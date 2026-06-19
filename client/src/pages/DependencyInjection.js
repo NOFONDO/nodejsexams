@@ -6,7 +6,7 @@ function DependencyInjection() {
     <div className="page">
       <Link to="/" className="back-btn">← Back to Home</Link>
 
-      <h2>🔧 Q2 — Structural Coupling & Dependency Injection</h2>
+      <h2> Q2 — Structural Coupling & Dependency Injection</h2>
 
       <p>
         Structural coupling refers to how much modules depend on each 
