@@ -33,8 +33,12 @@ function EditProperty() {
             country: property.country,
             type: property.type,
           });
-          if (property.imagePath) {
-            setCurrentImage(`http://localhost:5000${property.imagePath}`);
+        if (property.imagePath) {
+            let imageUrl = property.imagePath;
+            if (!imageUrl.startsWith('http')) {
+              imageUrl = `http://localhost:5000${imageUrl.startsWith('/uploads') ? '' : '/uploads/'}${imageUrl.startsWith('/uploads') ? imageUrl.slice(9) : imageUrl}`;
+            }
+            setCurrentImage(imageUrl);
           }
         }
       } catch (err) {

@@ -24,16 +24,28 @@ function PropertyCard({ property, onDelete }) {
       if (property.imagePath.startsWith('http')) {
         return property.imagePath;
       }
-      return `http://localhost:5000${property.imagePath}`;
+      if (property.imagePath.startsWith('/uploads')) {
+        return `http://localhost:5000${property.imagePath}`;
+      }
+      return `http://localhost:5000/uploads/${property.imagePath}`;
     }
     return '';
   };
 
+  const imageUrl = getImageUrl();
+
   return (
     <div style={styles.card}>
-      {getImageUrl() && (
-        <img src={getImageUrl()} alt={property.title} style={styles.img} />
-      )}
+      {imageUrl ? (
+        <img
+          src={imageUrl}
+          alt={property.title}
+          style={styles.img}
+          onError={(e) => {
+            e.target.style.display = 'none';
+          }}
+        />
+      ) : null}
       <div style={styles.body}>
         <span style={styles.type}>{property.type}</span>
         <h3 style={styles.title}>{property.title}</h3>
